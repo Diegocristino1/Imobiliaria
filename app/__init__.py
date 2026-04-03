@@ -1,4 +1,5 @@
 import os
+import tempfile
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
@@ -9,13 +10,25 @@ db = SQLAlchemy()
 _ROOT = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
 
 
+def _vercel_instance_path() -> str | None:
+    """Na Vercel, `instance/` ao lado do projeto é read-only; usa /tmp."""
+    if not (os.environ.get("VERCEL") or os.environ.get("VERCEL_ENV")):
+        return None
+    return os.path.abspath(os.path.join(tempfile.gettempdir(), "corretor_imob_instance"))
+
+
 def create_app(config_object: str | object = "app.config.Config") -> Flask:
-    app = Flask(
-        __name__,
-        template_folder=os.path.join(_ROOT, "templates"),
-        static_folder=os.path.join(_ROOT, "static"),
-        instance_relative_config=True,
-    )
+    flask_kw: dict = {
+        "template_folder": os.path.join(_ROOT, "templates"),
+        "static_folder": os.path.join(_ROOT, "static"),
+        "instance_relative_config": True,
+    }
+    _ip = _vercel_instance_path()
+    if _ip:
+        os.makedirs(_ip, exist_ok=True)
+        flask_kw["instance_path"] = _ip
+
+    app = Flask(__name__, **flask_kw)
     if isinstance(config_object, str):
         app.config.from_object(config_object)
     else:
