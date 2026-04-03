@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Sobre — {{ site_name }}{% endblock %}
+{% block meta_desc %}Conheça nossa metodologia consultiva, equipe e compromisso com transparência em negócios imobiliários.{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Quem somos</p>
+    <h1 class="page-hero__title">Negócio imobiliário como <em>estratégia</em>, não como sorte.</h1>
+    <p class="page-hero__lead">Somos um escritório boutique focado em clientes que buscam decisões informadas, documentação impecável e relacionamento de longo prazo.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container prose-grid">
+    <div class="prose">
+      <h2>Metodologia</h2>
+      <p>Combinamos inteligência de mercado, análise jurídica parceira e negociação orientada a resultado. Cada imóvel é posicionado com narrativa coerente, material visual profissional e precificação alinhada a dados reais de transação.</p>
+      <p>Não trabalhamos com volume desorganizado: preferimos um portfólio enxuto, com curadoria ativa e acompanhamento próximo até o pós-escritura.</p>
+      <h3>Para compradores e investidores</h3>
+      <p>Mapeamos alternativas fora do obvio, avaliamos riscos ocultos (restrições, governança condominial, zoneamento) e conduzimos propostas com margem segura de negociação.</p>
+      <h3>Para vendedores</h3>
+      <p>Plano de marketing sob medida, visitas qualificadas e feedback sistemático. Relatórios de interesse e ajustes de rota quando o mercado exigir agilidade.</p>
+    </div>
+    <aside class="aside-card">
+      <h3 class="aside-card__title">Números e reconhecimento</h3>
+      <ul class="aside-list">
+        <li><strong>+420</strong> transações assessoradas</li>
+        <li><strong>38</strong> meses de ticket médio em carteira premium</li>
+        <li>Parceria com escritórios de advocacia imobiliária e perícia técnica</li>
+      </ul>
+      <a class="btn btn--primary btn--block" href="{{ whatsapp_href or url_for('main.contato') }}" {% if whatsapp_href %}target="_blank" rel="noopener noreferrer"{% endif %}>{% if whatsapp_href %}WhatsApp — falar com o corretor{% else %}Contato{% endif %}</a>
+    </aside>
+  </div>
+</section>
+{% endblock %}

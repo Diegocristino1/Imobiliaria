@@ -1,0 +1,29 @@
+{% macro card_imovel(i) %}
+<article class="card-imovel">
+  <a class="card-imovel__media" href="{{ url_for('imoveis.detalhe', slug=i.slug) }}">
+    <img src="{{ i.imagem_principal|media_url }}" alt="" loading="lazy" width="640" height="400">
+    {% if i.destaque %}
+    <span class="badge badge--destaque">Destaque</span>
+    {% endif %}
+    <span class="badge badge--tipo">{{ i.tipo|tipo_label }}</span>
+  </a>
+  <div class="card-imovel__body">
+    <h3 class="card-imovel__title">
+      <a href="{{ url_for('imoveis.detalhe', slug=i.slug) }}">{{ i.titulo }}</a>
+    </h3>
+    <p class="card-imovel__loc">{{ i.bairro }}, {{ i.cidade }}/{{ i.estado }}</p>
+    <ul class="card-imovel__specs">
+      {% if i.quartos %}
+      <li>{{ i.quartos }} quartos</li>
+      {% endif %}
+      {% if i.area_m2 %}
+      <li>{{ i.area_m2 }} m²</li>
+      {% endif %}
+      {% if i.vagas %}
+      <li>{{ i.vagas }} vagas</li>
+      {% endif %}
+    </ul>
+    <p class="card-imovel__price">{{ i.preco|brl }}</p>
+  </div>
+</article>
+{% endmacro %}

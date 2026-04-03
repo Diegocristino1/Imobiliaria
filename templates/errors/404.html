@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Página não encontrada — {{ site_name }}{% endblock %}
+
+{% block content %}
+<section class="section section--center">
+  <div class="container narrow">
+    <p class="eyebrow">404</p>
+    <h1 class="page-hero__title">Esta página não existe.</h1>
+    <p class="page-hero__lead">Verifique o endereço ou retorne ao início para continuar navegando.</p>
+    <p class="stack-h">
+      <a class="btn btn--primary" href="{{ url_for('main.index') }}">Ir ao início</a>
+      <a class="btn btn--ghost" href="{{ url_for('imoveis.listar') }}">Ver imóveis</a>
+    </p>
+  </div>
+</section>
+{% endblock %}

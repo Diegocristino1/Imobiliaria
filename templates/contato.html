@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Contato — {{ site_name }}{% endblock %}
+
+{% block content %}
+<section class="page-hero page-hero--compact">
+  <div class="container">
+    <p class="eyebrow">Fale com a gente</p>
+    <h1 class="page-hero__title">Atendimento <em>pelo WhatsApp</em></h1>
+    <p class="page-hero__lead">Chame no WhatsApp para tirar dúvidas, agendar visitas ou receber oportunidades. Resposta no menor tempo possível.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container narrow contact-channels">
+    {% if whatsapp_href %}
+    <a class="btn btn--whatsapp btn--block btn--lg" href="{{ whatsapp_href }}" target="_blank" rel="noopener noreferrer">Conversar no WhatsApp</a>
+    {% endif %}
+    {% if instagram_href %}
+    <a class="btn btn--instagram btn--block btn--lg" href="{{ instagram_href }}" target="_blank" rel="noopener noreferrer">Ver no Instagram</a>
+    {% endif %}
+    <p class="contact-channels__note">Este é o único canal oficial de contato deste site. Redes sociais complementam o portfólio em vídeo e fotos.</p>
+  </div>
+</section>
+{% endblock %}

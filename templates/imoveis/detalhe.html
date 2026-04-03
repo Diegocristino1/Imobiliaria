@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% from "_macros.html" import card_imovel %}
+
+{% block title %}{{ imovel.titulo }} — {{ site_name }}{% endblock %}
+{% block meta_desc %}{{ imovel.descricao[:155] }}…{% endblock %}
+{% block head_extra %}
+<link rel="canonical" href="{{ request.url }}">
+{% endblock %}
+
+{% block content %}
+<article class="detail">
+  <nav class="breadcrumb container" aria-label="Navegação estrutural">
+    <a href="{{ url_for('main.index') }}">Início</a>
+    <span aria-hidden="true">/</span>
+    <a href="{{ url_for('imoveis.listar') }}">Imóveis</a>
+    <span aria-hidden="true">/</span>
+    <span>{{ imovel.titulo }}</span>
+  </nav>
+
+  <header class="detail__head container">
+    <div>
+      <p class="eyebrow">{{ imovel.tipo|tipo_label }} · {{ imovel.bairro }}, {{ imovel.cidade }}/{{ imovel.estado }}</p>
+      <h1 class="detail__title">{{ imovel.titulo }}</h1>
+      <p class="detail__address">{{ imovel.endereco }}</p>
+    </div>
+    <div class="detail__price-block">
+      <p class="detail__price">{{ imovel.preco|brl }}</p>
+      {% set wa_interesse = whatsapp_com_texto('Olá, Valdemir! Tenho interesse no imóvel: ' ~ imovel.titulo) %}
+      <a class="btn btn--primary" href="{{ wa_interesse or whatsapp_href or url_for('main.contato') }}" {% if wa_interesse or whatsapp_href %}target="_blank" rel="noopener noreferrer"{% endif %}>Tenho interesse</a>
+    </div>
+  </header>
+
+  <div class="detail__gallery container">
+    <figure class="detail__hero-shot">
+      <img src="{{ imovel.imagem_principal|media_url }}" alt="Foto principal do imóvel" width="1200" height="675">
+    </figure>
+    {% if galeria|length > 1 %}
+    <ul class="detail__thumbs">
+      {% for url in galeria %}
+      <li>
+        <a href="{{ url|media_url }}" target="_blank" rel="noopener noreferrer">
+          <img src="{{ url|media_url }}" alt="" loading="lazy" width="320" height="200">
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+
+  <div class="container detail__grid">
+    <div class="detail__main prose">
+      <h2>Sobre o imóvel</h2>
+      <p>{{ imovel.descricao }}</p>
+    </div>
+    <aside class="detail__facts">
+      <h2 class="detail__facts-title">Ficha técnica</h2>
+      <dl class="facts-list">
+        <div><dt>Área</dt><dd>{{ imovel.area_m2 }} m²</dd></div>
+        <div><dt>Quartos</dt><dd>{{ imovel.quartos }}</dd></div>
+        <div><dt>Banheiros</dt><dd>{{ imovel.banheiros }}</dd></div>
+        <div><dt>Vagas</dt><dd>{{ imovel.vagas }}</dd></div>
+        <div><dt>Cidade</dt><dd>{{ imovel.cidade }}/{{ imovel.estado }}</dd></div>
+        <div><dt>Bairro</dt><dd>{{ imovel.bairro }}</dd></div>
+      </dl>
+    </aside>
+  </div>
+
+  {% if similares %}
+  <section class="section section--muted">
+    <div class="container">
+      <header class="section__head">
+        <h2 class="section__title">No mesmo perfil</h2>
+        <p class="section__subtitle">Outras opções em {{ imovel.cidade }}.</p>
+      </header>
+      <div class="grid-cards">
+        {% for i in similares %}
+        {{ card_imovel(i) }}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+</article>
+{% endblock %}

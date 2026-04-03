@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Privacidade — {{ site_name }}{% endblock %}
+
+{% block content %}
+<section class="page-hero page-hero--compact">
+  <div class="container">
+    <p class="eyebrow">Transparência</p>
+    <h1 class="page-hero__title">Política de privacidade</h1>
+    <p class="page-hero__lead">Resumo das práticas deste site demonstrativo. Em produção, substitua por texto jurídico validado.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container prose">
+    <h2>Dados coletados</h2>
+    <p>O atendimento ocorre pelo WhatsApp: as informações que você enviar na conversa (nome, telefone, interesse em imóveis etc.) são usadas apenas para responder e dar seguimento comercial ao seu pedido.</p>
+    <h2>Uso</h2>
+    <p>Os dados não são vendidos. O histórico de conversas fica nas plataformas utilizadas (ex.: WhatsApp), conforme políticas desses serviços.</p>
+    <h2>Cookies</h2>
+    <p>Este site demonstrativo não utiliza cookies de rastreamento de terceiros. Serviços externos (ex.: fontes e imagens) podem aplicar suas próprias políticas.</p>
+    <h2>Contato</h2>
+    <p>Para exercer direitos previstos na LGPD, fale conosco pelo WhatsApp ou pela página <a href="{{ url_for('main.contato') }}">Contato</a>.</p>
+  </div>
+</section>
+{% endblock %}

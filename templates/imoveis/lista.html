@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% from "_macros.html" import card_imovel %}
+
+{% block title %}Imóveis disponíveis — {{ site_name }}{% endblock %}
+
+{% block content %}
+<section class="page-hero page-hero--compact">
+  <div class="container">
+    <p class="eyebrow">Catálogo</p>
+    <h1 class="page-hero__title">Imóveis <em>disponíveis</em></h1>
+    <p class="page-hero__lead">Confira as opções disponíveis no portfólio. Novas entradas toda semana.</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+    <p class="results-count">{{ imoveis|length }} resultado{% if imoveis|length != 1 %}s{% endif %}</p>
+
+    <div class="grid-cards">
+      {% for i in imoveis %}
+      {{ card_imovel(i) }}
+      {% else %}
+      <p class="empty-state">Nenhum imóvel cadastrado no momento. {% if whatsapp_href %}<a href="{{ whatsapp_href }}" target="_blank" rel="noopener noreferrer">Fale no WhatsApp</a>{% else %}<a href="{{ url_for('main.contato') }}">Contato</a>{% endif %} para busca sob encomenda.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

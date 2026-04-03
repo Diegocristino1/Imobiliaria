@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% from "_macros.html" import card_imovel %}
+
+{% block title %}Corretor de imóveis — {{ site_name }}{% endblock %}
+{% block meta_desc %}Portfólio de casas, apartamentos e terrenos com {{ site_name }}. Atendimento pelo WhatsApp.{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="hero__bg" aria-hidden="true" style="background-image: url('{{ url_for('static', filename='img/site/capa.png') }}');"></div>
+  <div class="hero__overlay" aria-hidden="true"></div>
+  <div class="container hero__inner">
+    <div class="hero__copy">
+      <p class="eyebrow">Assessoria imobiliária</p>
+      <h1 class="hero__title">Imóveis selecionados para quem valoriza <em>patrimônio</em> e <em>tempo</em>.</h1>
+      <p class="hero__lead">Curadoria de alto padrão, negociação estratégica e transparência em cada etapa — do primeiro contato à escritura.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="{{ url_for('imoveis.listar') }}">Ver imóveis</a>
+        <a class="btn btn--ghost-light" href="{{ whatsapp_href or url_for('main.contato') }}" {% if whatsapp_href %}target="_blank" rel="noopener noreferrer"{% endif %}>{% if whatsapp_href %}Chamar no WhatsApp{% else %}Contato{% endif %}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <header class="section__head">
+      <h2 class="section__title">Destaques do portfólio</h2>
+      <p class="section__subtitle">Seleção atual com forte apelo locacional e potencial de valorização.</p>
+      <a class="link-arrow" href="{{ url_for('imoveis.listar') }}">Ver todos os imóveis</a>
+    </header>
+    <div class="grid-cards">
+      {% for i in destaques %}
+      {{ card_imovel(i) }}
+      {% else %}
+      <p>Nenhum imóvel em destaque no momento.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--muted">
+  <div class="container">
+    <header class="section__head">
+      <h2 class="section__title">Recentes</h2>
+      <p class="section__subtitle">Novidades cadastradas e atualizações de precificação.</p>
+    </header>
+    <div class="grid-cards">
+      {% for i in recentes %}
+      {{ card_imovel(i) }}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section cta-band">
+  <div class="container cta-band__inner">
+    <div>
+      <h2 class="cta-band__title">Precisa vender ou avaliar um imóvel?</h2>
+      <p class="cta-band__text">Receba uma pré-análise de mercado e um plano de posicionamento sem custo na primeira reunião.</p>
+    </div>
+    <a class="btn btn--light" href="{{ whatsapp_href or url_for('main.contato') }}" {% if whatsapp_href %}target="_blank" rel="noopener noreferrer"{% endif %}>{% if whatsapp_href %}Falar no WhatsApp{% else %}Contato{% endif %}</a>
+  </div>
+</section>
+{% endblock %}
