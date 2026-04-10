@@ -92,6 +92,31 @@ def ensure_sample_data() -> None:
         "* Estrutura para três pavimentos acima"
     )
 
+    descricao_quintas_amanhecer = (
+        "Valdemir Pereira vende: (um) lote todo murado com plantas frutíferas no Bairro Quintas do Amanhecer II.\n\n"
+        "Metragem: 200 m²\n\n"
+        "Documentação: escriturado.\n\n"
+        "Ótimo lugar para o descanso.\n\n"
+        "Investimento: R$ 60.000,00\n"
+        "Aceita carro acima de R$ 40.000,00 como parte do pagamento.\n\n"
+        "Para maiores informações fale comigo.\n"
+        "(61) 99202-9010\n"
+        "CRECI: 32849"
+    )
+
+    descricao_buritis_iv_lote_residencias = (
+        "Valdemir Pereira vende: um lote com (02) duas residências gerando uma renda de R$ 1.500 mensais.\n\n"
+        "Localização: Quadra 22 Conjunto I AE 04 Lote 01, Buritis IV.\n\n"
+        "Metragem: 180 m²\n\n"
+        "Documentação: cessão de direito.\n\n"
+        "Investimento: R$ 230.000,00\n"
+        "Aceita carro como parte de pagamento.\n\n"
+        "Agende uma visita com seu corretor.\n\n"
+        "Valdemir Pereira\n"
+        "CRECI 32849\n"
+        "(61) 99202-9010"
+    )
+
     descricao_vila_fatima = (
         "Valdemir Pereira vende:\n"
         "Uma casa na Vila de Fátima com um pavimento acima.\n\n"
@@ -216,6 +241,56 @@ def ensure_sample_data() -> None:
                 [
                     "img/imoveis/arapoanga-comercial/frente.png",
                     "img/imoveis/arapoanga-comercial/corredor-lojas.png",
+                ]
+            ),
+        },
+        {
+            "slug": "lote-quintas-do-amanhecer-ii-200m2",
+            "titulo": "Lote — Quintas do Amanhecer II (200m², murado)",
+            "descricao": descricao_quintas_amanhecer,
+            "preco": 60000.0,
+            "tipo": "terreno",
+            "area_m2": 200.0,
+            "quartos": 0,
+            "banheiros": 0,
+            "vagas": 0,
+            "bairro": "Quintas do Amanhecer II",
+            "cidade": "Planaltina",
+            "estado": "DF",
+            "endereco": "Bairro Quintas do Amanhecer II, Planaltina/DF",
+            "destaque": True,
+            "imagem_principal": "img/vale1.jpeg",
+            "imagens_json": json.dumps(
+                [
+                    "img/vale1.jpeg",
+                    "img/vale2.jpeg",
+                    "img/vale3.jpeg",
+                    "img/vale4.jpeg",
+                    "img/vale5.jpeg",
+                ]
+            ),
+        },
+        {
+            "slug": "lote-buritis-iv-q22-duas-residencias-renda",
+            "titulo": "Lote — Buritis IV (2 residências, renda ~R$ 1.500)",
+            "descricao": descricao_buritis_iv_lote_residencias,
+            "preco": 230000.0,
+            "tipo": "casa",
+            "area_m2": 180.0,
+            "quartos": 0,
+            "banheiros": 0,
+            "vagas": 0,
+            "bairro": "Buritis IV",
+            "cidade": "Planaltina",
+            "estado": "DF",
+            "endereco": "Quadra 22 Conjunto I, AE 04 Lote 01, Buritis IV, Planaltina/DF",
+            "destaque": True,
+            "imagem_principal": "img/b4.jpeg",
+            "imagens_json": json.dumps(
+                [
+                    "img/b4.jpeg",
+                    "img/b4-1.jpeg",
+                    "img/b4-2.jpeg",
                 ]
             ),
         },
