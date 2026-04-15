@@ -117,6 +117,16 @@ def ensure_sample_data() -> None:
         "(61) 99202-9010"
     )
 
+    descricao_chacara_maria_barro = (
+        "Valdemir Pereira, corretor de imóveis, vende: uma chácara na antiga Maria do Barro (horta comunitária).\n\n"
+        "Local com água, luz e muitas plantas frutíferas.\n\n"
+        "Metragem: 1.000 m² — ideal para descanso e lazer, com fácil acesso.\n\n"
+        "Documentação: cessão de direito.\n\n"
+        "Investimento: R$ 320.000,00\n\n"
+        "Agende uma visita com seu corretor.\n\n"
+        "Valdemir Pereira"
+    )
+
     descricao_vila_fatima = (
         "Valdemir Pereira vende:\n"
         "Uma casa na Vila de Fátima com um pavimento acima.\n\n"
@@ -218,6 +228,32 @@ def ensure_sample_data() -> None:
                     "img/imoveis/chacara-planaltina/chacara-2.png",
                     "img/imoveis/chacara-planaltina/chacara-3.png",
                     "img/imoveis/chacara-planaltina/nascente.png",
+                ]
+            ),
+        },
+        {
+            "slug": "chacara-maria-do-barro-horta-comunitaria-1000m2",
+            "titulo": "Chácara — Maria do Barro (horta comunitária, 1.000 m²)",
+            "descricao": descricao_chacara_maria_barro,
+            "preco": 320000.0,
+            "tipo": "terreno",
+            "area_m2": 1000.0,
+            "quartos": 0,
+            "banheiros": 0,
+            "vagas": 0,
+            "bairro": "Maria do Barro",
+            "cidade": "Planaltina",
+            "estado": "DF",
+            "endereco": "Antiga Maria do Barro (horta comunitária), Planaltina/DF",
+            "destaque": True,
+            "imagem_principal": "img/cachara1.jpeg",
+            "imagens_json": json.dumps(
+                [
+                    "img/cachara1.jpeg",
+                    "img/chacara4.jpeg",
+                    "img/arvores_chacara.jpeg",
+                    "img/chacara3.jpeg",
+                    "img/chacaraa.jpeg",
                 ]
             ),
         },
