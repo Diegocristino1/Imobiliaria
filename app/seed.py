@@ -127,6 +127,24 @@ def ensure_sample_data() -> None:
         "Valdemir Pereira"
     )
 
+    descricao_vila_da_mata = (
+        "Condomínio Residencial Vila da Mata — lotes de 300 m².\n"
+        "Localização no bairro Buritis IV, ao lado da quadra 21 (Buritis 4).\n\n"
+        "Condições comerciais:\n"
+        "• Entrada de R$ 20.000\n"
+        "• Entrada dividida com parcelas (combinar)\n"
+        "• Parcelamento em promissória\n"
+        "• Prazo de entrega dos lotes: 6 meses\n\n"
+        "Infraestrutura do empreendimento:\n"
+        "• Poço artesiano\n"
+        "• Fossa séptica\n"
+        "• Bloquetes\n"
+        "• Esgotamento\n"
+        "• Drenagem de águas pluviais\n\n"
+        "As fotos exibem o padrão de construção e áreas de referência no entorno do empreendimento.\n\n"
+        "Valdemir Pereira — fale com o corretor para visita e condições atualizadas."
+    )
+
     descricao_vila_fatima = (
         "Valdemir Pereira vende:\n"
         "Uma casa na Vila de Fátima com um pavimento acima.\n\n"
@@ -328,6 +346,26 @@ def ensure_sample_data() -> None:
                     "img/b4-1.jpeg",
                     "img/b4-2.jpeg",
                 ]
+            ),
+        },
+        {
+            "slug": "lote-condominio-vila-da-mata-buritis-iv-300m2",
+            "titulo": "Lote — Condomínio Vila da Mata (300m², Buritis IV)",
+            "descricao": descricao_vila_da_mata,
+            "preco": 0.0,
+            "tipo": "terreno",
+            "area_m2": 300.0,
+            "quartos": 0,
+            "banheiros": 0,
+            "vagas": 0,
+            "bairro": "Buritis IV",
+            "cidade": "Planaltina",
+            "estado": "DF",
+            "endereco": "Condomínio Residencial Vila da Mata — ao lado da quadra 21, Buritis IV, Planaltina/DF",
+            "destaque": True,
+            "imagem_principal": "img/imoveis/vila-da-mata/01.jpeg",
+            "imagens_json": json.dumps(
+                [f"img/imoveis/vila-da-mata/{n:02d}.jpeg" for n in range(1, 8)]
             ),
         },
         {
