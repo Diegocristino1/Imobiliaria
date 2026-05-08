@@ -5,6 +5,9 @@
     {% if i.destaque %}
     <span class="badge badge--destaque">Destaque</span>
     {% endif %}
+    {% if i.link_externo %}
+    <span class="badge badge--externo">Anúncio parceiro</span>
+    {% endif %}
     <span class="badge badge--tipo">{{ i.tipo|tipo_label }}</span>
   </a>
   <div class="card-imovel__body">

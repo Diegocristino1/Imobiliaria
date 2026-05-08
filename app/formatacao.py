@@ -3,6 +3,7 @@ TIPO_IMOVEL_LABEL = {
     "apartamento": "Apartamento",
     "terreno": "Terreno",
     "cobertura": "Cobertura",
+    "rural": "Rural",
 }
 
 

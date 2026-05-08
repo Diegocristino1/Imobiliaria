@@ -2,7 +2,7 @@
 {% from "_macros.html" import card_imovel %}
 
 {% block title %}{{ imovel.titulo }} — {{ site_name }}{% endblock %}
-{% block meta_desc %}{{ imovel.descricao[:155] }}…{% endblock %}
+{% block meta_desc %}{% set md = imovel.descricao | replace('\n', ' ') | trim %}{{ md[:155] }}{% if md | length > 155 %}…{% endif %}{% endblock %}
 {% block head_extra %}
 <link rel="canonical" href="{{ request.url }}">
 {% endblock %}
@@ -26,7 +26,12 @@
     <div class="detail__price-block">
       <p class="detail__price">{{ imovel.preco|brl }}</p>
       {% set wa_interesse = whatsapp_com_texto('Olá, Valdemir! Tenho interesse no imóvel: ' ~ imovel.titulo) %}
-      <a class="btn btn--primary" href="{{ wa_interesse or whatsapp_href or url_for('main.contato') }}" {% if wa_interesse or whatsapp_href %}target="_blank" rel="noopener noreferrer"{% endif %}>Tenho interesse</a>
+      <div class="detail__actions">
+        <a class="btn btn--primary" href="{{ wa_interesse or whatsapp_href or url_for('main.contato') }}" {% if wa_interesse or whatsapp_href %}target="_blank" rel="noopener noreferrer"{% endif %}>Tenho interesse</a>
+        {% if imovel.link_externo %}
+        <a class="btn btn--ghost" href="{{ imovel.link_externo }}" target="_blank" rel="noopener noreferrer">Ver anúncio completo no portal parceiro</a>
+        {% endif %}
+      </div>
     </div>
   </header>
 
@@ -55,10 +60,18 @@
     <aside class="detail__facts">
       <h2 class="detail__facts-title">Ficha técnica</h2>
       <dl class="facts-list">
+        {% if imovel.area_m2 > 0 %}
         <div><dt>Área</dt><dd>{{ imovel.area_m2 }} m²</dd></div>
+        {% endif %}
+        {% if imovel.quartos > 0 %}
         <div><dt>Quartos</dt><dd>{{ imovel.quartos }}</dd></div>
+        {% endif %}
+        {% if imovel.banheiros > 0 %}
         <div><dt>Banheiros</dt><dd>{{ imovel.banheiros }}</dd></div>
+        {% endif %}
+        {% if imovel.vagas > 0 %}
         <div><dt>Vagas</dt><dd>{{ imovel.vagas }}</dd></div>
+        {% endif %}
         <div><dt>Cidade</dt><dd>{{ imovel.cidade }}/{{ imovel.estado }}</dd></div>
         <div><dt>Bairro</dt><dd>{{ imovel.bairro }}</dd></div>
       </dl>

@@ -646,6 +646,15 @@ a:hover {
   color: #1a1410;
 }
 
+.badge--externo {
+  top: auto;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  background: rgba(255, 252, 247, 0.96);
+  color: var(--color-navy-soft);
+  border: 1px solid var(--color-line);
+}
+
 .badge--tipo {
   right: 0.75rem;
   background: rgba(21, 34, 50, 0.82);
@@ -1080,7 +1089,18 @@ a:hover {
   color: var(--color-navy-soft);
 }
 
+.detail__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
 @media (max-width: 640px) {
+  .detail__actions {
+    justify-content: flex-start;
+  }
+
   .detail__price-block {
     text-align: left;
     width: 100%;

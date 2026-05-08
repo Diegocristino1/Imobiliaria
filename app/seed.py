@@ -39,7 +39,21 @@ def sync_vila_fatima_imagens_from_static(row: dict, static_root: Path) -> dict:
     return {**row, "imagem_principal": principal_rel, "imagens_json": json.dumps(rels)}
 
 
+def _ensure_sqlite_columns() -> None:
+    """SQLite não migra automaticamente ao mudar o modelo; acrescenta colunas novas."""
+    from sqlalchemy import inspect, text
+
+    try:
+        cols = {c["name"] for c in inspect(db.engine).get_columns("imoveis")}
+    except Exception:
+        return
+    if "link_externo" not in cols:
+        db.session.execute(text("ALTER TABLE imoveis ADD COLUMN link_externo VARCHAR(800)"))
+        db.session.commit()
+
+
 def ensure_sample_data() -> None:
+    _ensure_sqlite_columns()
     # Se o banco já tiver dados com imagens antigas (Unsplash), substitui pelo catálogo real.
     # Assim você não precisa apagar manualmente `instance/imoveis.db`.
     if Imovel.query.first():
@@ -47,6 +61,26 @@ def ensure_sample_data() -> None:
         if tem_unsplash:
             Imovel.query.delete()
             db.session.commit()
+
+    descricao_buritis_iv_q22_escriturada = (
+        "Vendo uma casa no Buritis IV. Quadra 22. Escriturada.\n\n"
+        "Contém:\n"
+        "* Garagem\n"
+        "* Sala de jantar\n"
+        "* Sala de visita\n"
+        "* 02 quartos (um com suíte)\n"
+        "* Banheiro social\n"
+        "* Cozinha\n"
+        "* Área de serviço de fundo\n"
+        "* Um corredor\n"
+        "* Toda forrada\n"
+        "* Janelas de blindex\n\n"
+        "Sujeito a financiamento.\n\n"
+        "Valor: R$ 300.000,00\n\n"
+        "Agende uma visita com seu corretor.\n\n"
+        "Valdemir Pereira\n"
+        "CRECI 32849"
+    )
 
     descricao_buritis_iv = (
         "Uma casa na quadra 21-A Do Buritis IV. Em frente uma área verde arborizada.\n\n"
@@ -90,6 +124,23 @@ def ensure_sample_data() -> None:
         "Contém:\n"
         "* Três lojas\n"
         "* Estrutura para três pavimentos acima"
+    )
+
+    descricao_arapoanga_quadra20_apartamento = (
+        "Aluga-se ou vende: apartamento no Arapoanga, quadra 20.\n\n"
+        "Contém:\n"
+        "* 02 quartos\n"
+        "* Banheiro\n"
+        "* Cozinha\n"
+        "* Área de serviço\n\n"
+        "Locação — exigências:\n"
+        "* Contrato de trabalho de no mínimo 06 meses\n"
+        "* Até 04 ocupantes\n\n"
+        "Valor de venda: R$ 100.000,00\n"
+        "(Consulte valores e condições de aluguel com o corretor.)\n\n"
+        "Agende visita.\n\n"
+        "Valdemir Pereira\n"
+        "CRECI 32849"
     )
 
     descricao_quintas_amanhecer = (
@@ -170,6 +221,25 @@ def ensure_sample_data() -> None:
         "Creci 32849"
     )
 
+    descricao_recanto_alpinhas = (
+        "Chácara de eventos Recanto das Alpinhas — ativo em operação, estruturado para eventos, "
+        "lazer e entretenimento.\n\n"
+        "Localização: DF-128, Km 18 — Bica do DER, Planaltina/DF.\n\n"
+        "Área do terreno: 2.000 m² · área construída: 1.000 m² · capacidade referência: até ~250 pessoas.\n\n"
+        "Destaques:\n"
+        "* Salão principal com estrutura em cúpula; fechamento em blindex\n"
+        "* Cozinha industrial e bar\n"
+        "* Camarim; banheiros coletivos dimensionados para grande público\n"
+        "* Casa de apoio (~80 m²) e almoxarifado\n"
+        "* Energia bifásica; segurança com câmeras e cerca elétrica\n"
+        "* Pavilhação em bloquete; estacionamento interno e externo\n"
+        "* Duas piscinas em concreto (principal com cascata e piscina infantil)\n\n"
+        "Documentação: cessão de direitos — não aceita financiamento.\n\n"
+        "Valor de referência no portal parceiro: R$ 2.400.000,00.\n\n"
+        "Fotos, plantas e ficha técnica completas no link externo.\n\n"
+        "Corretor: Valdemir Pereira Dias — (61) 99202-9010 · CRECI 32849/DF · Unnidos Imobiliária."
+    )
+
     amostras = [
         {
             "slug": "casa-buritis-iv-quadra-21a",
@@ -194,6 +264,26 @@ def ensure_sample_data() -> None:
                     "img/imoveis/buritis-iv/cozinha.png",
                     "img/imoveis/buritis-iv/banheiro.png",
                 ]
+            ),
+        },
+        {
+            "slug": "casa-buritis-iv-quadra-22-escriturada",
+            "titulo": "Casa — Buritis IV (Quadra 22, escriturada)",
+            "descricao": descricao_buritis_iv_q22_escriturada,
+            "preco": 300000.0,
+            "tipo": "casa",
+            "area_m2": 0.0,
+            "quartos": 2,
+            "banheiros": 2,
+            "vagas": 1,
+            "bairro": "Buritis IV",
+            "cidade": "Planaltina",
+            "estado": "DF",
+            "endereco": "Quadra 22, Buritis IV, Planaltina/DF",
+            "destaque": True,
+            "imagem_principal": "img/imoveis/buritis-iv-q22-casa/01.jpeg",
+            "imagens_json": json.dumps(
+                [f"img/imoveis/buritis-iv-q22-casa/{n:02d}.jpeg" for n in range(1, 12)]
             ),
         },
         {
@@ -299,6 +389,26 @@ def ensure_sample_data() -> None:
             ),
         },
         {
+            "slug": "apartamento-arapoanga-quadra-20-aluga-vende",
+            "titulo": "Apartamento — Arapoanga (Quadra 20, aluga ou vende)",
+            "descricao": descricao_arapoanga_quadra20_apartamento,
+            "preco": 100000.0,
+            "tipo": "apartamento",
+            "area_m2": 0.0,
+            "quartos": 2,
+            "banheiros": 1,
+            "vagas": 0,
+            "bairro": "Arapoanga",
+            "cidade": "Planaltina",
+            "estado": "DF",
+            "endereco": "Quadra 20, Arapoanga, Planaltina/DF",
+            "destaque": True,
+            "imagem_principal": "img/imoveis/arapoanga-q20-apartamento/01.jpeg",
+            "imagens_json": json.dumps(
+                [f"img/imoveis/arapoanga-q20-apartamento/{n:02d}.jpeg" for n in range(1, 15)]
+            ),
+        },
+        {
             "slug": "lote-quintas-do-amanhecer-ii-200m2",
             "titulo": "Lote — Quintas do Amanhecer II (200m², murado)",
             "descricao": descricao_quintas_amanhecer,
@@ -365,7 +475,7 @@ def ensure_sample_data() -> None:
             "destaque": True,
             "imagem_principal": "img/imoveis/vila-da-mata/01.jpeg",
             "imagens_json": json.dumps(
-                [f"img/imoveis/vila-da-mata/{n:02d}.jpeg" for n in range(1, 8)]
+                [f"img/imoveis/vila-da-mata/{n:02d}.jpeg" for n in range(1, 19)]
             ),
         },
         {
@@ -387,6 +497,32 @@ def ensure_sample_data() -> None:
             "imagens_json": json.dumps(
                 [f"img/imoveis/vila-de-fatima/{n:02d}.png" for n in range(1, 13)]
             ),
+        },
+        {
+            "slug": "chacara-eventos-recanto-alpinhas-bica-do-der",
+            "titulo": "Chácara de eventos — Recanto das Alpinhas (Bica do DER)",
+            "descricao": descricao_recanto_alpinhas,
+            "preco": 2400000.0,
+            "tipo": "rural",
+            "area_m2": 2000.0,
+            "quartos": 2,
+            "banheiros": 5,
+            "vagas": 0,
+            "bairro": "Residencial Bica do DER (Gleba B)",
+            "cidade": "Planaltina",
+            "estado": "DF",
+            "endereco": "DF-128, Km 18 — Bica do DER, Planaltina/DF",
+            "destaque": True,
+            "imagem_principal": "img/imoveis/chacara-planaltina/chacara-1.png",
+            "imagens_json": json.dumps(
+                [
+                    "img/imoveis/chacara-planaltina/chacara-1.png",
+                    "img/imoveis/chacara-planaltina/chacara-2.png",
+                    "img/imoveis/chacara-planaltina/chacara-3.png",
+                    "img/imoveis/chacara-planaltina/nascente.png",
+                ]
+            ),
+            "link_externo": "https://www.unnidosimoveis.com.br/property/villa153148v01",
         },
     ]
 
