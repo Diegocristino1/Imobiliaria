@@ -95,6 +95,16 @@ def ensure_sample_data() -> None:
         "Valor: R$ 300.000,00"
     )
 
+    descricao_buritis_iv_vendo_oportunidade = (
+        "Vendo este imóvel no Buritis IV.\n\n"
+        "Abaixamos o preço para você comprar.\n\n"
+        "Não deixe passar essa oportunidade.\n\n"
+        "Fale comigo.\n\n"
+        "Valdemir Pereira\n"
+        "(61) 99202-9010\n"
+        "CRECI 32849"
+    )
+
     descricao_vila_buritis = (
         "Essa casa fica localizada na quadra 02 da Vila Buritis.\n\n"
         "Contém:\n"
@@ -221,6 +231,25 @@ def ensure_sample_data() -> None:
         "Creci 32849"
     )
 
+    descricao_total_ville_12 = (
+        "Apartamentos de dois quartos no Total Ville 12.\n"
+        "Com entrada a partir de R$ 1.000,00.\n\n"
+        "Realize seu sonho de morar em um lugar de conforto e segurança.\n\n"
+        "Empreendimento com opções de plantas (incluindo unidades tipo e garden — consulte blocos e metragens com o corretor).\n\n"
+        "Para maiores informações fale com seu Corretor.\n\n"
+        "Valdemir Pereira\n"
+        "CRECI 32849"
+    )
+
+    descricao_kitnets_vila_fatima_aluguel = (
+        "Temos kitnets para alugar na Vila de Fátima, com aluguel mensal a partir de R$ 800,00.\n\n"
+        "Próximas à parada de ônibus, farmácia, comércio e academia.\n\n"
+        "Agende uma visita agora mesmo com seu Corretor.\n\n"
+        "Consulte disponibilidade, valores por unidade e condições do contrato diretamente com o corretor.\n\n"
+        "Valdemir Pereira\n"
+        "CRECI 32849"
+    )
+
     descricao_recanto_alpinhas = (
         "Chácara de eventos Recanto das Alpinhas — ativo em operação, estruturado para eventos, "
         "lazer e entretenimento.\n\n"
@@ -284,6 +313,26 @@ def ensure_sample_data() -> None:
             "imagem_principal": "img/imoveis/buritis-iv-q22-casa/01.jpeg",
             "imagens_json": json.dumps(
                 [f"img/imoveis/buritis-iv-q22-casa/{n:02d}.jpeg" for n in range(1, 12)]
+            ),
+        },
+        {
+            "slug": "casa-buritis-iv-venda-oportunidade-preco-reduzido",
+            "titulo": "Casa — Buritis IV (oportunidade, preço reduzido)",
+            "descricao": descricao_buritis_iv_vendo_oportunidade,
+            "preco": 0.0,
+            "tipo": "casa",
+            "area_m2": 0.0,
+            "quartos": 0,
+            "banheiros": 0,
+            "vagas": 0,
+            "bairro": "Buritis IV",
+            "cidade": "Planaltina",
+            "estado": "DF",
+            "endereco": "Buritis IV, Planaltina/DF",
+            "destaque": True,
+            "imagem_principal": "img/imoveis/buritis-iv-vendo-oportunidade/01.png",
+            "imagens_json": json.dumps(
+                [f"img/imoveis/buritis-iv-vendo-oportunidade/{n:02d}.png" for n in range(1, 7)]
             ),
         },
         {
@@ -496,6 +545,46 @@ def ensure_sample_data() -> None:
             "imagem_principal": "img/imoveis/vila-de-fatima/08.png",
             "imagens_json": json.dumps(
                 [f"img/imoveis/vila-de-fatima/{n:02d}.png" for n in range(1, 13)]
+            ),
+        },
+        {
+            "slug": "kitnets-aluguel-vila-de-fatima-planaltina",
+            "titulo": "Kitnets para alugar — Vila de Fátima",
+            "descricao": descricao_kitnets_vila_fatima_aluguel,
+            "preco": 800.0,
+            "tipo": "apartamento",
+            "area_m2": 0.0,
+            "quartos": 1,
+            "banheiros": 1,
+            "vagas": 0,
+            "bairro": "Vila de Fátima",
+            "cidade": "Planaltina",
+            "estado": "DF",
+            "endereco": "Vila de Fátima, Planaltina/DF — próximo a parada de ônibus, farmácia, comércio e academia",
+            "destaque": True,
+            "imagem_principal": "img/imoveis/vila-de-fatima-kitnets-aluguel/01.png",
+            "imagens_json": json.dumps(
+                [f"img/imoveis/vila-de-fatima-kitnets-aluguel/{n:02d}.png" for n in range(1, 13)]
+            ),
+        },
+        {
+            "slug": "apartamento-total-ville-12-dois-quartos-planaltina",
+            "titulo": "Apartamento — Total Ville 12 (2 quartos)",
+            "descricao": descricao_total_ville_12,
+            "preco": 0.0,
+            "tipo": "apartamento",
+            "area_m2": 0.0,
+            "quartos": 2,
+            "banheiros": 2,
+            "vagas": 0,
+            "bairro": "Total Ville 12",
+            "cidade": "Planaltina",
+            "estado": "DF",
+            "endereco": "Empreendimento Total Ville 12, Planaltina/DF",
+            "destaque": True,
+            "imagem_principal": "img/imoveis/total-ville-12/01.png",
+            "imagens_json": json.dumps(
+                [f"img/imoveis/total-ville-12/{n:02d}.png" for n in range(1, 15)]
             ),
         },
         {
