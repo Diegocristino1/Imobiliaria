@@ -136,6 +136,18 @@ def ensure_sample_data() -> None:
         "* Estrutura para três pavimentos acima"
     )
 
+    descricao_arapoanga_lote_400m2_tres_residencias = (
+        "Vendo lote no Arapoanga, próximo à Igreja Católica.\n\n"
+        "Metragem: 400 m²\n"
+        "Contém três residências no lote.\n\n"
+        "Ideal para investidor ou para morar.\n\n"
+        "Aceita troca por outra casa em Sobradinho ou Planaltina.\n\n"
+        "Investimento: R$ 450.000,00\n\n"
+        "Agende uma visita com seu corretor.\n\n"
+        "Valdemir Pereira\n"
+        "CRECI 32849"
+    )
+
     descricao_arapoanga_quadra20_apartamento = (
         "Aluga-se ou vende: apartamento no Arapoanga, quadra 20.\n\n"
         "Contém:\n"
@@ -455,6 +467,26 @@ def ensure_sample_data() -> None:
             "imagem_principal": "img/imoveis/arapoanga-q20-apartamento/01.jpeg",
             "imagens_json": json.dumps(
                 [f"img/imoveis/arapoanga-q20-apartamento/{n:02d}.jpeg" for n in range(1, 15)]
+            ),
+        },
+        {
+            "slug": "lote-arapoanga-400m2-tres-residencias-igreja-catolica",
+            "titulo": "Lote com 3 residências — Arapoanga (400m²)",
+            "descricao": descricao_arapoanga_lote_400m2_tres_residencias,
+            "preco": 450000.0,
+            "tipo": "terreno",
+            "area_m2": 400.0,
+            "quartos": 0,
+            "banheiros": 0,
+            "vagas": 0,
+            "bairro": "Arapoanga",
+            "cidade": "Planaltina",
+            "estado": "DF",
+            "endereco": "Próximo à Igreja Católica, Arapoanga, Planaltina/DF",
+            "destaque": True,
+            "imagem_principal": "img/imoveis/arapoanga-lote-400m2-tres-residencias/14.jpeg",
+            "imagens_json": json.dumps(
+                [f"img/imoveis/arapoanga-lote-400m2-tres-residencias/{n:02d}.jpeg" for n in range(1, 15)]
             ),
         },
         {
