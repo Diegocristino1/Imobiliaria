@@ -105,6 +105,32 @@ def ensure_sample_data() -> None:
         "CRECI 32849"
     )
 
+    descricao_buritis_iii = (
+        "Valdemir Pereira imóveis vende: uma casa no bairro Buritis III, escriturada, "
+        "com um pavimento acima.\n\n"
+        "Ótima localização — próximo ao comércio e à parada de ônibus.\n\n"
+        "Térreo:\n"
+        "* Garagem para dois veículos pequenos\n"
+        "* Sala\n"
+        "* 02 quartos (um com suíte)\n"
+        "* Cozinha\n"
+        "* Área de serviço\n"
+        "* Corredor à esquerda\n"
+        "* Banheiro social\n\n"
+        "Parte superior:\n"
+        "* Sala\n"
+        "* 02 quartos\n"
+        "* Banheiro social\n"
+        "* Cozinha tipo americana\n\n"
+        "Primeira dona.\n\n"
+        "Investimento: R$ 300.000,00\n\n"
+        "Observação: aceita contra proposta.\n\n"
+        "Para maiores informações fale com seu corretor.\n\n"
+        "Valdemir Pereira\n"
+        "CRECI: 32849\n"
+        "(61) 99202-9010"
+    )
+
     descricao_vila_buritis = (
         "Essa casa fica localizada na quadra 02 da Vila Buritis.\n\n"
         "Contém:\n"
@@ -345,6 +371,26 @@ def ensure_sample_data() -> None:
             "imagem_principal": "img/imoveis/buritis-iv-vendo-oportunidade/01.png",
             "imagens_json": json.dumps(
                 [f"img/imoveis/buritis-iv-vendo-oportunidade/{n:02d}.png" for n in range(1, 7)]
+            ),
+        },
+        {
+            "slug": "casa-buritis-iii-escriturada-dois-pavimentos",
+            "titulo": "Casa — Buritis III (escriturada, 2 pavimentos)",
+            "descricao": descricao_buritis_iii,
+            "preco": 300000.0,
+            "tipo": "casa",
+            "area_m2": 0.0,
+            "quartos": 4,
+            "banheiros": 3,
+            "vagas": 2,
+            "bairro": "Buritis III",
+            "cidade": "Planaltina",
+            "estado": "DF",
+            "endereco": "Buritis III, Planaltina/DF",
+            "destaque": True,
+            "imagem_principal": "img/imoveis/buritis-iii/01.jpeg",
+            "imagens_json": json.dumps(
+                [f"img/imoveis/buritis-iii/{n:02d}.jpeg" for n in range(1, 15)]
             ),
         },
         {
