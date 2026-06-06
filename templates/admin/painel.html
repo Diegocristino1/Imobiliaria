@@ -1,0 +1,24 @@
+{% extends "admin/base.html" %}
+{% block title %}Imóveis{% endblock %}
+{% block content %}
+<header class="admin-page-head">
+  <h1>Imóveis cadastrados</h1>
+  <p>Escolha um imóvel para enviar ou remover fotos e vídeos.</p>
+</header>
+<ul class="admin-imovel-list">
+  {% for i in imoveis %}
+  <li class="admin-imovel-list__item">
+    <div class="admin-imovel-list__info">
+      <strong>{{ i.titulo }}</strong>
+      <span>{{ i.bairro }} · {{ i.preco|brl }}</span>
+    </div>
+    <div class="admin-imovel-list__actions">
+      <a class="btn btn--small btn--ghost" href="{{ url_for('imoveis.detalhe', slug=i.slug) }}" target="_blank" rel="noopener">Ver no site</a>
+      <a class="btn btn--small btn--primary" href="{{ url_for('admin.imovel', imovel_id=i.id) }}">Mídias</a>
+    </div>
+  </li>
+  {% else %}
+  <li><p>Nenhum imóvel no banco.</p></li>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>{% block title %}Admin{% endblock %} — {{ site_name }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="admin-body">
+  {% if admin_logado %}
+  <header class="admin-bar">
+    <div class="container admin-bar__inner">
+      <a class="admin-bar__brand" href="{{ url_for('admin.painel') }}">Painel ADM</a>
+      <nav class="admin-bar__nav">
+        <a href="{{ url_for('main.index') }}" target="_blank" rel="noopener">Ver site</a>
+        <a href="{{ url_for('admin.logout') }}">Sair</a>
+      </nav>
+    </div>
+  </header>
+  {% endif %}
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <div class="flash-wrap container" role="status">
+    {% for category, message in messages %}
+    <p class="flash flash--{{ category }}">{{ message }}</p>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endwith %}
+
+  <main class="admin-main container">
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

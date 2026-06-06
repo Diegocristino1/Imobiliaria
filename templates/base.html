@@ -38,6 +38,9 @@
           <li><a href="{{ whatsapp_href }}" class="btn btn--small btn--whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
           {% endif %}
           <li><a href="{{ url_for('main.contato') }}" class="btn btn--small btn--ghost">Contato</a></li>
+          {% if admin_logado %}
+          <li><a href="{{ url_for('admin.painel') }}" class="btn btn--small btn--ghost">Admin</a></li>
+          {% endif %}
         </ul>
       </nav>
     </div>

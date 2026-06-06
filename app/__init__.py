@@ -38,10 +38,18 @@ def create_app(config_object: str | object = "app.config.Config") -> Flask:
 
     db.init_app(app)
 
-    from app.routes import bp_main, bp_imoveis
+    from app.routes import bp_admin, bp_main, bp_imoveis
 
     app.register_blueprint(bp_main)
     app.register_blueprint(bp_imoveis, url_prefix="/imoveis")
+    app.register_blueprint(bp_admin)
+
+    @app.before_request
+    def _sessao_admin_permanente():
+        from flask import session
+
+        if session.get("admin"):
+            session.permanent = True
 
     from app.formatacao import format_brl, label_tipo, media_url
 
@@ -85,11 +93,14 @@ def create_app(config_object: str | object = "app.config.Config") -> Flask:
         if digits:
             texto = quote("Olá! Gostaria de falar com um corretor.", safe="")
             whatsapp_href = f"https://wa.me/{digits}?text={texto}"
+        from app.admin_auth import admin_logado
+
         return {
             "ano_atual": datetime.now().year,
             "site_name": site_name,
             "whatsapp_href": whatsapp_href,
             "instagram_href": ig or None,
+            "admin_logado": admin_logado(),
         }
 
     with app.app_context():

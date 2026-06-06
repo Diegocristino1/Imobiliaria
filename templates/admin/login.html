@@ -1,0 +1,15 @@
+{% extends "admin/base.html" %}
+{% block title %}Entrar{% endblock %}
+{% block content %}
+<section class="admin-login">
+  <h1 class="admin-login__title">Área administrativa</h1>
+  <p class="admin-login__hint">Gerencie fotos e vídeos dos imóveis.</p>
+  <form class="admin-form" method="post" action="{{ url_for('admin.login') }}">
+    <label class="admin-field">
+      <span>Senha</span>
+      <input type="password" name="senha" required autocomplete="current-password" autofocus>
+    </label>
+    <button type="submit" class="btn btn--primary">Entrar</button>
+  </form>
+</section>
+{% endblock %}

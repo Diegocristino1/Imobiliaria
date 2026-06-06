@@ -25,7 +25,7 @@
     </div>
     <div class="detail__price-block">
       <p class="detail__price">{{ imovel.preco|brl }}</p>
-      {% set wa_interesse = whatsapp_com_texto('Olá, Valdemir! Tenho interesse no imóvel: ' ~ imovel.titulo) %}
+      {% set wa_interesse = whatsapp_com_texto('Olá, gostaria de saber mais informações sobre o imóvel: ' ~ imovel.titulo) %}
       <div class="detail__actions">
         <a class="btn btn--primary" href="{{ wa_interesse or whatsapp_href or url_for('main.contato') }}" {% if wa_interesse or whatsapp_href %}target="_blank" rel="noopener noreferrer"{% endif %}>Tenho interesse</a>
         {% if imovel.link_externo %}
@@ -49,6 +49,18 @@
       </li>
       {% endfor %}
     </ul>
+    {% endif %}
+    {% if videos %}
+    <div class="detail__videos">
+      <h2 class="detail__videos-title">Vídeos</h2>
+      <ul class="detail__video-list">
+        {% for path in videos %}
+        <li>
+          <video class="detail__video" src="{{ path|media_url }}" controls preload="metadata" playsinline></video>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
     {% endif %}
   </div>
 

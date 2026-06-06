@@ -1,0 +1,81 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ imovel.titulo }}{% endblock %}
+{% block content %}
+<header class="admin-page-head">
+  <p class="admin-back"><a href="{{ url_for('admin.painel') }}">← Voltar</a></p>
+  <h1>{{ imovel.titulo }}</h1>
+  <p>{{ imovel.bairro }} · <a href="{{ url_for('imoveis.detalhe', slug=imovel.slug) }}" target="_blank" rel="noopener">Abrir página pública</a></p>
+</header>
+
+<section class="admin-panel">
+  <h2>Fotos ({{ galeria|length }})</h2>
+  <form class="admin-upload" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="acao" value="upload_fotos">
+    <label class="admin-field">
+      <span>Adicionar fotos</span>
+      <input type="file" name="fotos" accept="image/jpeg,image/png,image/webp,image/gif" multiple required>
+    </label>
+    <p class="admin-hint">JPG, PNG ou WebP — até 12 MB por arquivo.</p>
+    <button type="submit" class="btn btn--primary">Enviar fotos</button>
+  </form>
+
+  {% if galeria %}
+  <ul class="admin-media-grid">
+    {% for path in galeria %}
+    <li class="admin-media-card">
+      <img src="{{ path|media_url }}" alt="">
+      {% if imovel.imagem_principal == path %}
+      <span class="badge badge--destaque">Principal</span>
+      {% endif %}
+      <div class="admin-media-card__actions">
+        {% if imovel.imagem_principal != path %}
+        <form method="post">
+          <input type="hidden" name="acao" value="principal">
+          <input type="hidden" name="path" value="{{ path }}">
+          <button type="submit" class="btn btn--small btn--ghost">Definir principal</button>
+        </form>
+        {% endif %}
+        <form method="post" onsubmit="return confirm('Remover esta foto?');">
+          <input type="hidden" name="acao" value="remover_foto">
+          <input type="hidden" name="path" value="{{ path }}">
+          <button type="submit" class="btn btn--small btn--ghost admin-btn-danger">Remover</button>
+        </form>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="admin-empty">Nenhuma foto na galeria.</p>
+  {% endif %}
+</section>
+
+<section class="admin-panel">
+  <h2>Vídeos ({{ videos|length }})</h2>
+  <form class="admin-upload" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="acao" value="upload_videos">
+    <label class="admin-field">
+      <span>Adicionar vídeos</span>
+      <input type="file" name="videos" accept="video/mp4,video/webm,video/quicktime" multiple required>
+    </label>
+    <p class="admin-hint">MP4, WebM ou MOV — até 80 MB por arquivo.</p>
+    <button type="submit" class="btn btn--primary">Enviar vídeos</button>
+  </form>
+
+  {% if videos %}
+  <ul class="admin-media-grid admin-media-grid--video">
+    {% for path in videos %}
+    <li class="admin-media-card">
+      <video src="{{ path|media_url }}" controls preload="metadata"></video>
+      <form method="post" onsubmit="return confirm('Remover este vídeo?');">
+        <input type="hidden" name="acao" value="remover_video">
+        <input type="hidden" name="path" value="{{ path }}">
+        <button type="submit" class="btn btn--small btn--ghost admin-btn-danger">Remover</button>
+      </form>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="admin-empty">Nenhum vídeo cadastrado.</p>
+  {% endif %}
+</section>
+{% endblock %}

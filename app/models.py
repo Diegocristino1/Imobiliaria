@@ -24,7 +24,8 @@ class Imovel(db.Model):
     endereco = db.Column(db.String(255), nullable=False)
     destaque = db.Column(db.Boolean, default=False, nullable=False)
     imagem_principal = db.Column(db.String(500), nullable=False)
-    imagens_json = db.Column(db.Text, default="[]")  # JSON array of URLs
+    imagens_json = db.Column(db.Text, default="[]")  # JSON array of paths under static/
+    videos_json = db.Column(db.Text, default="[]")  # JSON array of video paths under static/
     link_externo = db.Column(db.String(800), nullable=True)  # anúncio completo em portal parceiro
     criado_em = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
 

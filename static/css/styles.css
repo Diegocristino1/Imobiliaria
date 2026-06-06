@@ -1205,6 +1205,247 @@ a:hover {
   font-weight: 600;
 }
 
+/* Detail — vídeos */
+.detail__videos {
+  margin-top: 1.5rem;
+}
+
+.detail__videos-title {
+  font-size: 1.15rem;
+  margin: 0 0 1rem;
+}
+
+.detail__video-list {
+  display: grid;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 640px) {
+  .detail__video-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.detail__video {
+  width: 100%;
+  max-height: 360px;
+  border-radius: var(--radius-md);
+  background: #111;
+}
+
+/* Admin */
+.admin-body {
+  background: #f4f5f7;
+  min-height: 100vh;
+}
+
+.admin-bar {
+  background: var(--color-ink, #1a1d24);
+  color: #fff;
+  padding: 0.75rem 0;
+}
+
+.admin-bar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.admin-bar__brand {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.admin-bar__nav {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.9rem;
+}
+
+.admin-bar__nav a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+}
+
+.admin-bar__nav a:hover {
+  color: #fff;
+}
+
+.admin-main {
+  padding: 2rem 1rem 3rem;
+  max-width: 960px;
+}
+
+.admin-login {
+  max-width: 380px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background: var(--color-surface, #fff);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-line);
+  box-shadow: var(--shadow-sm);
+}
+
+.admin-login__title {
+  margin: 0 0 0.35rem;
+}
+
+.admin-login__hint {
+  color: var(--color-muted);
+  margin: 0 0 1.5rem;
+  font-size: 0.95rem;
+}
+
+.admin-page-head {
+  margin-bottom: 1.5rem;
+}
+
+.admin-page-head h1 {
+  margin: 0.25rem 0;
+}
+
+.admin-back a {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+.admin-form,
+.admin-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 420px;
+}
+
+.admin-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.admin-field input[type="file"],
+.admin-field input[type="password"] {
+  padding: 0.5rem;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  font: inherit;
+}
+
+.admin-hint {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.admin-panel {
+  background: var(--color-surface, #fff);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.admin-panel h2 {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+}
+
+.admin-imovel-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.admin-imovel-list__item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background: var(--color-surface, #fff);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+}
+
+.admin-imovel-list__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.admin-imovel-list__info span {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+.admin-imovel-list__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.admin-media-grid {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+.admin-media-card {
+  position: relative;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: #eee;
+}
+
+.admin-media-card img,
+.admin-media-card video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+
+.admin-media-grid--video .admin-media-card video {
+  aspect-ratio: 16/9;
+}
+
+.admin-media-card__actions {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.admin-media-card .badge {
+  position: absolute;
+  top: 0.35rem;
+  left: 0.35rem;
+}
+
+.admin-btn-danger {
+  color: #9b2c2c;
+}
+
+.admin-empty {
+  color: var(--color-muted);
+  margin: 0.5rem 0 0;
+}
+
 /* Misc */
 .section--center {
   text-align: center;

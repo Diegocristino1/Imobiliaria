@@ -50,6 +50,9 @@ def _ensure_sqlite_columns() -> None:
     if "link_externo" not in cols:
         db.session.execute(text("ALTER TABLE imoveis ADD COLUMN link_externo VARCHAR(800)"))
         db.session.commit()
+    if "videos_json" not in cols:
+        db.session.execute(text("ALTER TABLE imoveis ADD COLUMN videos_json TEXT DEFAULT '[]'"))
+        db.session.commit()
 
 
 def ensure_sample_data() -> None:
@@ -102,6 +105,40 @@ def ensure_sample_data() -> None:
         "Fale comigo.\n\n"
         "Valdemir Pereira\n"
         "(61) 99202-9010\n"
+        "CRECI 32849"
+    )
+
+    descricao_buritis_iv_casa_estrutura_superior = (
+        "Valdemir Pereira vende: Uma casa no Buritis IV.\n\n"
+        "Contém:\n"
+        "* Garagem\n"
+        "* Sala\n"
+        "* Banheiro social\n"
+        "* 03 Quartos (um com suíte)\n"
+        "* Cozinha ampla\n"
+        "* Área de fundo grande\n"
+        "* 02 Corredores nas laterais\n"
+        "* Estrutura para construção na parte de cima\n\n"
+        "Documentação:\n"
+        "Escritura\n\n"
+        "Sujeito ao financiamento.\n\n"
+        "Investimento: R$ 410.000,00\n\n"
+        "Agende uma visita com seu corretor.\n\n"
+        "Valdemir Pereira\n"
+        "CRECI 32849"
+    )
+
+    descricao_buritis_iv_lote_avenida_comercial = (
+        "Valdemir Pereira vende:\n"
+        "Um lote na Avenida Comercial do Buritis IV. Próximo ao posto de gasolina.\n"
+        "Excelente local para o comércio.\n"
+        "Aceita carro como parte do valor.\n\n"
+        "Metragem: 220 m²\n"
+        "Escriturado\n\n"
+        "Investimento: R$ 280.000,00\n"
+        "Aceita proposta\n\n"
+        "Agende uma visita com seu corretor.\n\n"
+        "Valdemir Pereira\n"
         "CRECI 32849"
     )
 
@@ -371,6 +408,52 @@ def ensure_sample_data() -> None:
             "imagem_principal": "img/imoveis/buritis-iv-vendo-oportunidade/01.png",
             "imagens_json": json.dumps(
                 [f"img/imoveis/buritis-iv-vendo-oportunidade/{n:02d}.png" for n in range(1, 7)]
+            ),
+        },
+        {
+            "slug": "casa-buritis-iv-estrutura-superior-escriturada",
+            "titulo": "Casa — Buritis IV (escriturada, estrutura superior)",
+            "descricao": descricao_buritis_iv_casa_estrutura_superior,
+            "preco": 410000.0,
+            "tipo": "casa",
+            "area_m2": 0.0,
+            "quartos": 3,
+            "banheiros": 2,
+            "vagas": 1,
+            "bairro": "Buritis IV",
+            "cidade": "Planaltina",
+            "estado": "DF",
+            "endereco": "Buritis IV, Planaltina/DF",
+            "destaque": True,
+            "imagem_principal": "img/imoveis/buritis-iv-casa-estrutura-superior/01.png",
+            "imagens_json": json.dumps(
+                [
+                    f"img/imoveis/buritis-iv-casa-estrutura-superior/{n:02d}.png"
+                    for n in range(1, 13)
+                ]
+            ),
+        },
+        {
+            "slug": "lote-buritis-iv-avenida-comercial-220m2",
+            "titulo": "Lote comercial — Buritis IV (Avenida Comercial, 220 m²)",
+            "descricao": descricao_buritis_iv_lote_avenida_comercial,
+            "preco": 280000.0,
+            "tipo": "terreno",
+            "area_m2": 220.0,
+            "quartos": 0,
+            "banheiros": 0,
+            "vagas": 0,
+            "bairro": "Buritis IV",
+            "cidade": "Planaltina",
+            "estado": "DF",
+            "endereco": "Avenida Comercial, Buritis IV — próximo ao posto de gasolina, Planaltina/DF",
+            "destaque": True,
+            "imagem_principal": "img/imoveis/buritis-iv-lote-avenida-comercial/01.png",
+            "imagens_json": json.dumps(
+                [
+                    f"img/imoveis/buritis-iv-lote-avenida-comercial/{n:02d}.png"
+                    for n in range(1, 7)
+                ]
             ),
         },
         {
