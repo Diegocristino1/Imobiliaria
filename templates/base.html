@@ -80,6 +80,7 @@
           <li><a href="{{ url_for('main.sobre') }}">Quem somos</a></li>
           <li><a href="{{ url_for('main.contato') }}">Contato</a></li>
           <li><a href="{{ url_for('main.privacidade') }}">Privacidade</a></li>
+          <li><a href="{{ url_for('admin.painel') if admin_logado else url_for('admin.login') }}">{% if admin_logado %}Painel admin{% else %}Área administrativa{% endif %}</a></li>
         </ul>
       </div>
       <div>

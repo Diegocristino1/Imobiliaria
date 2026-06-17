@@ -142,6 +142,18 @@ def ensure_sample_data() -> None:
         "CRECI 32849"
     )
 
+    descricao_planaltina_sobrado_06_kitnets = (
+        "Valdemir Pereira vende: Em Planaltina/DF.\n"
+        "Um sobrado ou prédio com 06 kitnets.\n\n"
+        "IPTU: R$ 1.340,00\n"
+        "Escriturado\n"
+        "Sujeito ao financiamento.\n\n"
+        "Investimento: R$ 500.000,00\n\n"
+        "Agende uma visita com seu corretor.\n\n"
+        "Valdemir Pereira\n"
+        "CRECI 32849"
+    )
+
     descricao_buritis_iii = (
         "Valdemir Pereira imóveis vende: uma casa no bairro Buritis III, escriturada, "
         "com um pavimento acima.\n\n"
@@ -453,6 +465,29 @@ def ensure_sample_data() -> None:
                 [
                     f"img/imoveis/buritis-iv-lote-avenida-comercial/{n:02d}.png"
                     for n in range(1, 7)
+                ]
+            ),
+        },
+        {
+            "slug": "sobrado-planaltina-06-kitnets",
+            "titulo": "Sobrado — Planaltina/DF (6 kitnets)",
+            "descricao": descricao_planaltina_sobrado_06_kitnets,
+            "preco": 500000.0,
+            "tipo": "casa",
+            "area_m2": 0.0,
+            "quartos": 6,
+            "banheiros": 6,
+            "vagas": 0,
+            "bairro": "Planaltina",
+            "cidade": "Planaltina",
+            "estado": "DF",
+            "endereco": "Planaltina/DF",
+            "destaque": True,
+            "imagem_principal": "img/imoveis/planaltina-sobrado-06-kitnets/01.png",
+            "imagens_json": json.dumps(
+                [
+                    f"img/imoveis/planaltina-sobrado-06-kitnets/{n:02d}.png"
+                    for n in range(1, 16)
                 ]
             ),
         },

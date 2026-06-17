@@ -3,7 +3,12 @@
 {% block content %}
 <section class="admin-login">
   <h1 class="admin-login__title">Área administrativa</h1>
-  <p class="admin-login__hint">Gerencie fotos e vídeos dos imóveis.</p>
+  <p class="admin-login__hint">Gerencie fotos e vídeos dos imóveis cadastrados no site.</p>
+  <ol class="admin-login__steps">
+    <li>Entre com a senha de administrador.</li>
+    <li>Escolha o imóvel na lista.</li>
+    <li>Envie fotos ou vídeos, defina a principal ou remova arquivos.</li>
+  </ol>
   <form class="admin-form" method="post" action="{{ url_for('admin.login') }}">
     <label class="admin-field">
       <span>Senha</span>

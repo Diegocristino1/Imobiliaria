@@ -1,24 +1,49 @@
 {% extends "admin/base.html" %}
 {% block title %}Imóveis{% endblock %}
 {% block content %}
-<header class="admin-page-head">
-  <h1>Imóveis cadastrados</h1>
-  <p>Escolha um imóvel para enviar ou remover fotos e vídeos.</p>
+<header class="admin-page-head admin-page-head--row">
+  <div>
+    <h1>Painel de imóveis</h1>
+    <p>Cada imóvel tem sua própria galeria. Escolha uma casa abaixo para <strong>adicionar fotos</strong>, ou cadastre um imóvel novo.</p>
+  </div>
+  <a class="btn btn--primary" href="{{ url_for('admin.novo_imovel') }}">+ Novo imóvel</a>
 </header>
+
+<div class="admin-callout">
+  <strong>Como adicionar fotos de outra casa?</strong>
+  <ol>
+    <li>Localize o imóvel na lista abaixo.</li>
+    <li>Toque em <strong>Adicionar fotos</strong>.</li>
+    <li>Se a casa ainda não estiver no site, use <strong>Novo imóvel</strong> no topo.</li>
+  </ol>
+</div>
+
 <ul class="admin-imovel-list">
   {% for i in imoveis %}
+  {% set qtd_fotos = (i.imagens_json | json_list_len) %}
   <li class="admin-imovel-list__item">
+    <div class="admin-imovel-list__thumb">
+      {% if i.imagem_principal %}
+      <img src="{{ i.imagem_principal|media_url }}" alt="">
+      {% else %}
+      <span class="admin-imovel-list__no-img">Sem foto</span>
+      {% endif %}
+    </div>
     <div class="admin-imovel-list__info">
       <strong>{{ i.titulo }}</strong>
       <span>{{ i.bairro }} · {{ i.preco|brl }}</span>
+      <span class="admin-imovel-list__meta">{{ qtd_fotos }} foto(s) · {{ i.tipo|tipo_label }}</span>
     </div>
     <div class="admin-imovel-list__actions">
+      <a class="btn btn--small btn--primary" href="{{ url_for('admin.imovel', imovel_id=i.id) }}">Adicionar fotos</a>
       <a class="btn btn--small btn--ghost" href="{{ url_for('imoveis.detalhe', slug=i.slug) }}" target="_blank" rel="noopener">Ver no site</a>
-      <a class="btn btn--small btn--primary" href="{{ url_for('admin.imovel', imovel_id=i.id) }}">Mídias</a>
     </div>
   </li>
   {% else %}
-  <li><p>Nenhum imóvel no banco.</p></li>
+  <li class="admin-empty-panel">
+    <p>Nenhum imóvel cadastrado ainda.</p>
+    <a class="btn btn--primary" href="{{ url_for('admin.novo_imovel') }}">Cadastrar primeiro imóvel</a>
+  </li>
   {% endfor %}
 </ul>
 {% endblock %}

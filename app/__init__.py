@@ -57,6 +57,12 @@ def create_app(config_object: str | object = "app.config.Config") -> Flask:
     app.jinja_env.filters["tipo_label"] = label_tipo
     app.jinja_env.filters["media_url"] = media_url
 
+    from app.media_store import parse_json_list
+
+    @app.template_filter("json_list_len")
+    def json_list_len(raw: str | None) -> int:
+        return len(parse_json_list(raw))
+
     @app.template_global()
     def whatsapp_com_texto(texto: str | None = None):
         """Gera link wa.me com mensagem personalizada (ex.: interesse em um imóvel)."""

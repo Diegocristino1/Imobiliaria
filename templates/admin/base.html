@@ -13,6 +13,7 @@
     <div class="container admin-bar__inner">
       <a class="admin-bar__brand" href="{{ url_for('admin.painel') }}">Painel ADM</a>
       <nav class="admin-bar__nav">
+        <a href="{{ url_for('admin.novo_imovel') }}">Novo imóvel</a>
         <a href="{{ url_for('main.index') }}" target="_blank" rel="noopener">Ver site</a>
         <a href="{{ url_for('admin.logout') }}">Sair</a>
       </nav>

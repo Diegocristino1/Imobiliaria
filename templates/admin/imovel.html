@@ -2,13 +2,20 @@
 {% block title %}{{ imovel.titulo }}{% endblock %}
 {% block content %}
 <header class="admin-page-head">
-  <p class="admin-back"><a href="{{ url_for('admin.painel') }}">← Voltar</a></p>
+  <p class="admin-back"><a href="{{ url_for('admin.painel') }}">← Todos os imóveis</a></p>
   <h1>{{ imovel.titulo }}</h1>
   <p>{{ imovel.bairro }} · <a href="{{ url_for('imoveis.detalhe', slug=imovel.slug) }}" target="_blank" rel="noopener">Abrir página pública</a></p>
 </header>
 
-<section class="admin-panel">
-  <h2>Fotos ({{ galeria|length }})</h2>
+<div class="admin-callout admin-callout--compact">
+  Fotos enviadas aqui aparecem <strong>só neste imóvel</strong>.
+  <a href="{{ url_for('admin.painel') }}">Escolher outra casa</a>
+  ·
+  <a href="{{ url_for('admin.novo_imovel') }}">Cadastrar imóvel novo</a>
+</div>
+
+<section class="admin-panel admin-panel--highlight">
+  <h2>Adicionar fotos ({{ galeria|length }} na galeria)</h2>
   <form class="admin-upload" method="post" enctype="multipart/form-data">
     <input type="hidden" name="acao" value="upload_fotos">
     <label class="admin-field">
